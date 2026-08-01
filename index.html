@@ -208,85 +208,128 @@ function drawShrimp(){
 ctx.save();
 
 if(shrimp.flash>0){
-ctx.globalAlpha=
-Math.sin(shrimp.flash)*0.5+0.5;
+ctx.globalAlpha=Math.sin(shrimp.flash)*0.5+0.5;
 shrimp.flash-=0.3;
 }
 
 const x=shrimp.x;
 const y=shrimp.y;
 
-ctx.strokeStyle="#ff9b9b";
+const tail=Math.sin(Date.now()/120)*8;
+
+// 触角
+ctx.strokeStyle="#ff9b7a";
 ctx.lineWidth=3;
 
 ctx.beginPath();
-ctx.moveTo(x+10,y-10);
-ctx.quadraticCurveTo(x+40,y-40,x+55,y-20);
+ctx.moveTo(x+25,y-12);
+ctx.quadraticCurveTo(x+60,y-45,x+90,y-20);
 ctx.stroke();
 
 ctx.beginPath();
-ctx.moveTo(x+10,y);
-ctx.quadraticCurveTo(x+45,y-15,x+60,y+10);
+ctx.moveTo(x+20,y-2);
+ctx.quadraticCurveTo(x+55,y-15,x+85,y+10);
 ctx.stroke();
 
-ctx.fillStyle="#ff7b9c";
+ctx.fillStyle="#ff8a65";
 
+// 胴体（エビっぽく曲げる）
 ctx.beginPath();
-ctx.ellipse(
-x,
-y,
-30,
-18,
-0,
-0,
-Math.PI*2
+
+ctx.moveTo(x-25,y);
+
+ctx.quadraticCurveTo(
+x-10,
+y-20,
+x+10,
+y-15
 );
+
+ctx.quadraticCurveTo(
+x+35,
+y-10,
+x+40,
+y+5
+);
+
+ctx.quadraticCurveTo(
+x+20,
+y+20,
+x-10,
+y+15
+);
+
+ctx.quadraticCurveTo(
+x-25,
+y+10,
+x-25,
+y
+);
+
 ctx.fill();
 
+// 頭
 ctx.beginPath();
 ctx.arc(
-x+25,
-y-2,
-16,
+x+40,
+y,
+18,
 0,
 Math.PI*2
 );
 ctx.fill();
 
+// しっぽ
 ctx.beginPath();
-ctx.moveTo(x-28,y);
-ctx.lineTo(x-50,y-15);
-ctx.lineTo(x-45,y);
-ctx.lineTo(x-50,y+15);
+ctx.moveTo(x-25,y);
+
+ctx.lineTo(
+x-55,
+y-18-tail
+);
+
+ctx.lineTo(
+x-45,
+y
+);
+
+ctx.lineTo(
+x-55,
+y+18+tail
+);
+
 ctx.closePath();
 ctx.fill();
 
-ctx.strokeStyle="#ff5f7f";
+// 足
+ctx.strokeStyle="#ff7043";
+ctx.lineWidth=2;
 
-for(let i=0;i<4;i++){
+for(let i=0;i<5;i++){
 
 ctx.beginPath();
 
 ctx.moveTo(
-x-5,
-y+8
+x-5+(i*8),
+y+10
 );
 
 ctx.lineTo(
-x-15-(i*5),
-y+18
+x-15+(i*8),
+y+20
 );
 
 ctx.stroke();
 }
 
+// 目（大きめ）
 ctx.fillStyle="white";
 
 ctx.beginPath();
 ctx.arc(
-x+30,
-y-5,
-5,
+x+47,
+y-6,
+6,
 0,
 Math.PI*2
 );
@@ -296,9 +339,22 @@ ctx.fillStyle="black";
 
 ctx.beginPath();
 ctx.arc(
-x+32,
-y-5,
-2,
+x+49,
+y-6,
+2.5,
+0,
+Math.PI*2
+);
+ctx.fill();
+
+// ほっぺ
+ctx.fillStyle="#ffb3b3";
+
+ctx.beginPath();
+ctx.arc(
+x+35,
+y+6,
+4,
 0,
 Math.PI*2
 );
