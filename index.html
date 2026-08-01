@@ -243,6 +243,27 @@ document
 startGame
 );
 
+document
+.getElementById("retryBtn")
+.addEventListener("click",()=>{
+
+  document.getElementById(
+    "gameover"
+  ).style.display="none";
+
+  obstacles.length=0;
+  bubbles.length=0;
+
+  for(let i=0;i<20;i++){
+    createBubble();
+  }
+
+  hits=0;
+
+  startGame();
+
+});
+
 function gameOver(){
 
   gameStarted=false;
