@@ -171,6 +171,14 @@ let bubbles=[];
 
 let waves=0;
 
+let obstacles=[];
+
+let hits=0;
+
+let speed=6;
+
+let nextSpawn=0;
+
 let shrimp={
 
 x:140,
@@ -211,6 +219,139 @@ document
 "click",
 startGame
 );
+
+function getObstacleType(){
+
+if(distance<300){
+
+const types=[
+"🐚",
+"🪨",
+"🐟",
+"🐠",
+"🐡"
+];
+
+return types[
+Math.floor(
+Math.random()*types.length
+)
+];
+
+}
+
+if(distance<700){
+
+const types=[
+"🐚",
+"🪨",
+"🐟",
+"🐠",
+"🐡",
+"🐙",
+"🦑",
+"🌿",
+"🪸"
+];
+
+return types[
+Math.floor(
+Math.random()*types.length
+)
+];
+
+}
+
+if(distance<1000){
+
+const types=[
+"🐚",
+"🪨",
+"🐟",
+"🐠",
+"🐡",
+"🐙",
+"🦑",
+"🌿",
+"🪸",
+"🪝"
+];
+
+return types[
+Math.floor(
+Math.random()*types.length
+)
+];
+
+}
+
+const types=[
+"🐚",
+"🪨",
+"🐟",
+"🐠",
+"🐡",
+"🐙",
+"🦑",
+"🌿",
+"🪸",
+"🪝",
+"🕸️"
+];
+
+return types[
+Math.floor(
+Math.random()*types.length
+)
+];
+
+}
+
+function spawnObstacle(){
+
+const type=getObstacleType();
+
+let y;
+
+if(
+type==="🪨"||
+type==="🐚"||
+type==="🌿"||
+type==="🪸"
+){
+
+y=canvas.height-140;
+
+}else if(type==="🪝"){
+
+y=0;
+
+}else if(type==="🕸️"){
+
+y=50;
+
+}else{
+
+y=
+100+
+Math.random()*
+(canvas.height-300);
+
+}
+
+obstacles.push({
+
+type:type,
+
+x:canvas.width+100,
+
+y:y,
+
+size:60
+
+});
+
+}
 
 function createBubble(){
 
