@@ -643,6 +643,62 @@ canvas.width,
 
 }
 
+function drawShrimpShape(ctx){
+
+  const tail=
+  Math.sin(Date.now()*0.01)*4;
+
+  // 触角
+  ctx.strokeStyle="#ff9a6b";
+  ctx.lineWidth=3;
+
+  ctx.beginPath();
+  ctx.moveTo(-8,-6);
+  ctx.quadraticCurveTo(-40,-30,-70,-15);
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(-8,0);
+  ctx.quadraticCurveTo(-45,10,-75,15);
+  ctx.stroke();
+
+  // 胴体
+  ctx.strokeStyle="#ff8c66";
+  ctx.lineWidth=7;
+  ctx.fillStyle="#ff6347";
+
+  ctx.beginPath();
+  ctx.arc(0,0,24,1.2,5.9);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.arc(20,10,18,1.2,5.8);
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.arc(38,22,14,1.1,5.7);
+  ctx.stroke();
+
+  // 尻尾
+  ctx.fillStyle="#ff8c66";
+
+  ctx.beginPath();
+  ctx.moveTo(55,26);
+  ctx.lineTo(80,16-tail);
+  ctx.lineTo(72,28);
+  ctx.lineTo(80,42+tail);
+  ctx.closePath();
+  ctx.fill();
+
+  // 目
+  ctx.fillStyle="black";
+
+  ctx.beginPath();
+  ctx.arc(-4,-8,2.5,0,Math.PI*2);
+  ctx.fill();
+}
+
 function drawShrimp(){
 
 if(
