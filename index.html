@@ -215,93 +215,76 @@ shrimp.flash-=0.3;
 const x=shrimp.x;
 const y=shrimp.y;
 
-const tail=Math.sin(Date.now()/120)*8;
+// 泳ぎアニメ
+const swim=Math.sin(Date.now()/120)*4;
 
-// 触角
+// ===== 触角 =====
 ctx.strokeStyle="#ff9b7a";
 ctx.lineWidth=3;
 
 ctx.beginPath();
-ctx.moveTo(x+25,y-12);
-ctx.quadraticCurveTo(x+60,y-45,x+90,y-20);
+ctx.moveTo(x+30,y-20);
+ctx.quadraticCurveTo(x+70,y-60,x+110,y-25);
 ctx.stroke();
 
 ctx.beginPath();
-ctx.moveTo(x+20,y-2);
-ctx.quadraticCurveTo(x+55,y-15,x+85,y+10);
+ctx.moveTo(x+25,y-10);
+ctx.quadraticCurveTo(x+65,y-20,x+100,y+5);
 ctx.stroke();
 
+// ===== 胴体（節） =====
 ctx.fillStyle="#ff8a65";
 
-// 胴体（エビっぽく曲げる）
-ctx.beginPath();
+const body = [
+ {dx:25,dy:-5,r:18},
+ {dx:5,dy:0,r:16},
+ {dx:-15,dy:8,r:14},
+ {dx:-32,dy:20,r:12},
+ {dx:-45,dy:35,r:10}
+];
 
-ctx.moveTo(x-25,y);
-
-ctx.quadraticCurveTo(
-x-10,
-y-20,
-x+10,
-y-15
-);
-
-ctx.quadraticCurveTo(
-x+35,
-y-10,
-x+40,
-y+5
-);
-
-ctx.quadraticCurveTo(
-x+20,
-y+20,
-x-10,
-y+15
-);
-
-ctx.quadraticCurveTo(
-x-25,
-y+10,
-x-25,
-y
-);
-
-ctx.fill();
-
-// 頭
+body.forEach(seg=>{
 ctx.beginPath();
 ctx.arc(
-x+40,
-y,
-18,
+x+seg.dx,
+y+seg.dy+swim*(seg.dx/-50),
+seg.r,
 0,
 Math.PI*2
 );
 ctx.fill();
+});
 
-// しっぽ
+// ===== 頭 =====
 ctx.beginPath();
-ctx.moveTo(x-25,y);
+ctx.arc(x+45,y-8,20,0,Math.PI*2);
+ctx.fill();
+
+// ===== しっぽ =====
+ctx.beginPath();
+
+ctx.moveTo(x-52,y+38);
 
 ctx.lineTo(
-x-55,
-y-18-tail
+x-82,
+y+15-swim
 );
 
 ctx.lineTo(
-x-45,
-y
+x-72,
+y+38
 );
 
 ctx.lineTo(
-x-55,
-y+18+tail
+x-82,
+y+60+swim
 );
 
 ctx.closePath();
+
 ctx.fill();
 
-// 足
+// ===== 足 =====
 ctx.strokeStyle="#ff7043";
 ctx.lineWidth=2;
 
@@ -310,54 +293,36 @@ for(let i=0;i<5;i++){
 ctx.beginPath();
 
 ctx.moveTo(
-x-5+(i*8),
-y+10
+x+10-(i*12),
+y+10+(i*6)
 );
 
 ctx.lineTo(
-x-15+(i*8),
-y+20
+x-5-(i*12),
+y+25+(i*6)
 );
 
 ctx.stroke();
 }
 
-// 目（大きめ）
+// ===== 目 =====
 ctx.fillStyle="white";
 
 ctx.beginPath();
-ctx.arc(
-x+47,
-y-6,
-6,
-0,
-Math.PI*2
-);
+ctx.arc(x+52,y-15,7,0,Math.PI*2);
 ctx.fill();
 
 ctx.fillStyle="black";
 
 ctx.beginPath();
-ctx.arc(
-x+49,
-y-6,
-2.5,
-0,
-Math.PI*2
-);
+ctx.arc(x+54,y-15,3,0,Math.PI*2);
 ctx.fill();
 
-// ほっぺ
-ctx.fillStyle="#ffb3b3";
+// ===== ほっぺ =====
+ctx.fillStyle="#ffb6b6";
 
 ctx.beginPath();
-ctx.arc(
-x+35,
-y+6,
-4,
-0,
-Math.PI*2
-);
+ctx.arc(x+40,y,5,0,Math.PI*2);
 ctx.fill();
 
 ctx.restore();
