@@ -243,6 +243,22 @@ document
 startGame
 );
 
+function gameOver(){
+
+  gameStarted=false;
+
+  document.getElementById(
+    "scoreText"
+  ).textContent =
+    "距離 : " +
+    Math.floor(distance) +
+    "m";
+
+  document.getElementById(
+    "gameover"
+  ).style.display="flex";
+}
+
 function getObstacleType(){
 
 if(distance<300){
