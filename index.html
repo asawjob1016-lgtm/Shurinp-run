@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+<title>🦐 Shrimp Run</title>
+
+<style>
+
+html,body{
+margin:0;
+padding:0;
+overflow:hidden;
+background:#006da8;
+font-family:sans-serif;
+touch-action:none;
+}
+
+canvas{
+display:block;
+background:
+linear-gradient(
+180deg,
+#56c8ff 0%,
+#0094d4 100%
+);
+}
+
+#menu{
+position:absolute;
+inset:0;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+color:white;
+z-index:10;
+}
+
+#title{
+font-size:52px;
+font-weight:bold;
+margin-bottom:10px;
+}
+
+#subtitle{
+font-size:18px;
+margin-bottom:30px;
+}
+
+button{
+font-size:24px;
+padding:15px 40px;
+border:none;
+border-radius:20px;
+background:white;
+}
+
+#gameover{
+
+display:none;
+
+position:absolute;
+inset:0;
+
+background:rgba(0,0,0,.75);
+
+color:white;
+
+justify-content:center;
+align-items:center;
+flex-direction:column;
+
+z-index:20;
+}
+
+#scoreText{
+font-size:22px;
+margin:20px;
+text-align:center;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="menu">
+
+<div id="title">🦐 Shrimp Run</div>
+
+<div id="subtitle">
+エビを操作して泳ぎ続けよう
+</div>
+
+<button onclick="startGame()">
+START
+</button>
+
+</div>
+
+<div id="gameover">
+
+<h1>GAME OVER</h1>
+
+<div id="scoreText"></div>
+
+<button onclick="location.reload()">
+もう一度
+</button>
+
+</div>
+
+<canvas id="game"></canvas>
+
+<script>
+
+const canvas =
+document.getElementById("game");
+
+const ctx =
+canvas.getContext("2d");
+
+function resize(){
+
+canvas.width=
+window.innerWidth;
+
+canvas.height=
+window.innerHeight;
+
+groundY=
+canvas.height-80;
+
+}
+
+window.addEventListener(
+"resize",
+resize
+);
+
+let groundY=0;
+
+resize();
+
+let running=false;
+
+let distance=0;
+
+let bestScore=
+parseInt(
+localStorage.getItem(
+"shrimpBest"
+)||0
+);
+
+let speed=4;
+
+let hitCount=0;
+
+function startGame(){
+
+document.getElementById(
+"menu"
+).style.display="none";
+
+running=true;
+
+requestAnimationFrame(loop);
+
+}
+
+function gameOver(){
+
+running=false;
+
+if(
+Math.floor(distance)>
+bestScore
+){
+
+bestScore=
+Math.floor(distance);
+
+localStorage.setItem(
+"shrimpBest",
+bestScore
+);
+
+}
+
+document.getElementById(
+"scoreText"
+).innerHTML=
+`
+距離:
+${Math.floor(distance)}m
+<br><br>
+最高記録:
+${bestScore}m
+`;
+
+document.getElementById(
+"gameover"
+).style.display="flex";
+
+}
+
+function drawBackground(){
+
+ctx.clearRect(
+0,
+0,
+canvas.width,
+canvas.height
+);
+
+const t=
+Date.now()/1000;
+
+ctx.fillStyle=
+"#0a7fb8";
+
+ctx.fillRect(
+0,
+0,
+canvas.width,
+canvas.height
+);
+
+ctx.fillStyle=
+"rgba(255,255,255,.15)";
+
+for(let i=0;i<12;i++){
+
+ctx.beginPath();
+
+ctx.ellipse(
+i*150+
+(t*40)%150,
+60+
+Math.sin(t+i)*10,
+50,
+4,
+0,
+0,
+Math.PI*2
+);
+
+ctx.fill();
+
+}
+
+ctx.fillStyle=
+"#cdbb7a";
+
+ctx.fillRect(
+0,
+groundY,
+canvas.width,
+canvas.height-groundY
+);
+
+ctx.fillStyle=
+"white";
+
+ctx.font=
+"24px sans-serif";
+
+ctx.fillText(
+`距離 ${Math.floor(distance)}m`,
+20,
+40
+);
+
+ctx.fillText(
+`❤️ ${2-hitCount}`,
+20,
+75
+);
+
+ctx.fillText(
+`BEST ${bestScore}m`,
+20,
+110
+);
+
+}
+
+function loop(){
+
+if(!running)return;
+
+distance+=0.1;
+
+drawBackground();
+
+requestAnimationFrame(loop);
+
+}
+
+</script>
+
+</body>
+</html>
