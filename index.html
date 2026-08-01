@@ -966,6 +966,10 @@ lastTap=now;
 
 function loop(){
 
+if(!gameStarted){
+  return;
+}
+
 drawBackground();
 
 updateShrimp();
