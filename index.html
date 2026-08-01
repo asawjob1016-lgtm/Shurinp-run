@@ -497,6 +497,44 @@ o.y
 
 }
 
+function checkCollision(){
+
+for(const o of obstacles){
+
+const dx=Math.abs(
+(shrimp.x+20)-o.x
+);
+
+const dy=Math.abs(
+(shrimp.y+20)-o.y
+);
+
+if(dx<45 && dy<45){
+
+if(shrimp.invincible>0){
+continue;
+}
+
+hits++;
+
+shrimp.flash=60;
+
+shrimp.invincible=90;
+
+if(hits>=2){
+
+gameOver();
+
+return;
+
+}
+
+}
+
+}
+
+}
+
 function drawBackground(){
 
 const grad=
