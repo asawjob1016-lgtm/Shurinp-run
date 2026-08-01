@@ -462,37 +462,13 @@ function drawObstacles(){
 
 for(const o of obstacles){
 
-ctx.font="52px serif";
-
-if(o.type==="fish"){
+ctx.font="56px serif";
 
 ctx.fillText(
-"🐟",
+o.type,
 o.x,
 o.y
 );
-
-}
-
-if(o.type==="shell"){
-
-ctx.fillText(
-"🐚",
-o.x,
-o.y
-);
-
-}
-
-if(o.type==="rock"){
-
-ctx.fillText(
-"🪨",
-o.x,
-o.y
-);
-
-}
 
 }
 
