@@ -213,14 +213,30 @@ Math.sin(shrimp.flash)*0.5+0.5;
 shrimp.flash-=0.3;
 }
 
-ctx.fillStyle="#ff7b7b";
+const x=shrimp.x;
+const y=shrimp.y;
+
+ctx.strokeStyle="#ff9b9b";
+ctx.lineWidth=3;
+
+ctx.beginPath();
+ctx.moveTo(x+10,y-10);
+ctx.quadraticCurveTo(x+40,y-40,x+55,y-20);
+ctx.stroke();
+
+ctx.beginPath();
+ctx.moveTo(x+10,y);
+ctx.quadraticCurveTo(x+45,y-15,x+60,y+10);
+ctx.stroke();
+
+ctx.fillStyle="#ff7b9c";
 
 ctx.beginPath();
 ctx.ellipse(
-shrimp.x,
-shrimp.y,
+x,
+y,
 30,
-20,
+18,
 0,
 0,
 Math.PI*2
@@ -229,20 +245,59 @@ ctx.fill();
 
 ctx.beginPath();
 ctx.arc(
-shrimp.x+20,
-shrimp.y-5,
-8,
+x+25,
+y-2,
+16,
 0,
 Math.PI*2
 );
 ctx.fill();
 
-ctx.fillStyle="#000";
+ctx.beginPath();
+ctx.moveTo(x-28,y);
+ctx.lineTo(x-50,y-15);
+ctx.lineTo(x-45,y);
+ctx.lineTo(x-50,y+15);
+ctx.closePath();
+ctx.fill();
+
+ctx.strokeStyle="#ff5f7f";
+
+for(let i=0;i<4;i++){
+
+ctx.beginPath();
+
+ctx.moveTo(
+x-5,
+y+8
+);
+
+ctx.lineTo(
+x-15-(i*5),
+y+18
+);
+
+ctx.stroke();
+}
+
+ctx.fillStyle="white";
 
 ctx.beginPath();
 ctx.arc(
-shrimp.x+23,
-shrimp.y-7,
+x+30,
+y-5,
+5,
+0,
+Math.PI*2
+);
+ctx.fill();
+
+ctx.fillStyle="black";
+
+ctx.beginPath();
+ctx.arc(
+x+32,
+y-5,
 2,
 0,
 Math.PI*2
