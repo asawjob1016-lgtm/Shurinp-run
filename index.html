@@ -382,6 +382,122 @@ createBubble();
 
 }
 
+function createObstacle(){
+
+let type;
+
+const r=Math.random();
+
+if(r<0.4){
+
+type="fish";
+
+}else if(r<0.7){
+
+type="shell";
+
+}else{
+
+type="rock";
+
+}
+
+let y;
+
+if(type==="fish"){
+
+y=
+100+
+Math.random()*
+(canvas.height-300);
+
+}else{
+
+y=
+canvas.height-120;
+
+}
+
+obstacles.push({
+
+type:type,
+
+x:canvas.width+100,
+
+y:y,
+
+size:60
+
+});
+
+}
+
+function updateObstacles(){
+
+obstacleTimer++;
+
+if(obstacleTimer>90){
+
+createObstacle();
+
+obstacleTimer=0;
+
+}
+
+for(let i=obstacles.length-1;i>=0;i--){
+
+obstacles[i].x-=8;
+
+if(obstacles[i].x<-100){
+
+obstacles.splice(i,1);
+
+}
+
+}
+
+}
+
+function drawObstacles(){
+
+for(const o of obstacles){
+
+ctx.font="52px serif";
+
+if(o.type==="fish"){
+
+ctx.fillText(
+"🐟",
+o.x,
+o.y
+);
+
+}
+
+if(o.type==="shell"){
+
+ctx.fillText(
+"🐚",
+o.x,
+o.y
+);
+
+}
+
+if(o.type==="rock"){
+
+ctx.fillText(
+"🪨",
+o.x,
+o.y
+);
+
+}
+
+}
+
+}
+
 function drawBackground(){
 
 const grad=
