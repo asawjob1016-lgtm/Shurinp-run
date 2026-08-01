@@ -582,13 +582,18 @@ e=>{
 if(!gameStarted)
 return;
 
+const endY=
+e.changedTouches[0].clientY;
+
 const diff=
-e.changedTouches[0].clientY-
-swipeStartY;
+endY-swipeStartY;
 
-if(diff>60){
+// 下スワイプ
+if(diff>50){
 
-shrimp.targetY+=90;
+shrimp.targetY+=120;
+
+return;
 
 }
 
