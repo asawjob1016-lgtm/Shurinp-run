@@ -155,6 +155,44 @@ RETRY
 
 <script>
 
+const audioCtx=
+new (
+window.AudioContext ||
+window.webkitAudioContext
+)();
+
+function playSound(
+freq,
+duration
+){
+
+  const osc=
+  audioCtx.createOscillator();
+
+  const gain=
+  audioCtx.createGain();
+
+  osc.connect(gain);
+
+  gain.connect(
+    audioCtx.destination
+  );
+
+  osc.frequency.value=
+  freq;
+
+  osc.type="triangle";
+
+  gain.gain.value=0.08;
+
+  osc.start();
+
+  osc.stop(
+    audioCtx.currentTime+
+    duration
+  );
+}
+
 const canvas =
 document.getElementById("game");
 
