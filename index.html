@@ -789,11 +789,14 @@ Math.max(
 
 function updateShrimp(){
 
-shrimp.y +=
-(
-shrimp.targetY-
-shrimp.y
-)*0.15;
+  // 少しずつ沈む
+  shrimp.targetY += 1;
+
+  shrimp.y +=
+  (
+    shrimp.targetY -
+    shrimp.y
+  ) * 0.15;
 
 if(shrimp.flash>0){
 shrimp.flash--;
@@ -838,50 +841,15 @@ if(
 now-lastTap<250
 ){
 
-shrimp.targetY-=120;
+shrimp.targetY -= 150;
 
 }else{
 
-shrimp.targetY-=70;
+shrimp.targetY -= 100;
 
 }
 
 lastTap=now;
-
-}
-);
-
-let swipeStartY=0;
-
-canvas.addEventListener(
-"touchstart",
-e=>{
-
-swipeStartY=
-e.touches[0].clientY;
-
-}
-);
-
-canvas.addEventListener(
-"touchend",
-e=>{
-
-if(!gameStarted)
-return;
-
-const endY=
-e.changedTouches[0].clientY;
-
-const diff=
-endY-swipeStartY;
-
-// 下スワイプ
-if(diff>50){
-
-shrimp.targetY+=120;
-
-return;
 
 }
 
