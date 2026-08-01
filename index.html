@@ -746,12 +746,13 @@ return;
 
 function loop(){
 
-if(!gameStarted)
-return;
-
 drawBackground();
 
 updateShrimp();
+
+updateObstacles();
+
+drawObstacles();
 
 drawShrimp();
 
