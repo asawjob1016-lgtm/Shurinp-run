@@ -812,6 +812,31 @@ Math.max(
 
 }
 
+function drawMenuShrimp(){
+
+  const canvas =
+  document.getElementById("menuShrimp");
+
+  const ctx =
+  canvas.getContext("2d");
+
+  ctx.clearRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
+
+  ctx.save();
+
+  ctx.translate(60,60);
+  ctx.scale(1.5,1.5);
+
+  drawShrimpShape(ctx);
+
+  ctx.restore();
+}
+
 function updateShrimp(){
 
   // 少しずつ沈む
