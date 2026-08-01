@@ -161,3 +161,158 @@ vy:0
 let obstacles=[];
 
 let touchStartY=0;
+
+function startGame(){
+
+document.getElementById(
+"menu"
+).style.display="none";
+
+running=true;
+
+distance=0;
+speed=6;
+hitCount=0;
+
+obstacles=[];
+
+shrimp.y=
+canvas.height/2;
+
+shrimp.vy=0;
+
+loop();
+}
+
+function restartGame(){
+
+document.getElementById(
+"gameover"
+).style.display="none";
+
+startGame();
+}
+
+canvas.addEventListener(
+"touchstart",
+e=>{
+
+touchStartY=
+e.touches[0].clientY;
+
+}
+);
+
+canvas.addEventListener(
+"touchend",
+e=>{
+
+if(!running)return;
+
+let endY=
+e.changedTouches[0].clientY;
+
+let diff=
+endY-touchStartY;
+
+if(diff<-60){
+
+shrimp.vy=-12;
+
+}else if(diff>60){
+
+shrimp.vy=12;
+
+}else{
+
+shrimp.vy=-8;
+}
+
+}
+);
+
+function updateShrimp(){
+
+shrimp.vy+=0.5;
+
+shrimp.y+=shrimp.vy;
+
+if(shrimp.y<40)
+shrimp.y=40;
+
+if(shrimp.y>
+groundY-60)
+shrimp.y=
+groundY-60;
+}
+
+function drawBackground(){
+
+ctx.clearRect(
+0,
+0,
+canvas.width,
+canvas.height
+);
+
+let wave=
+Math.sin(
+Date.now()*0.002
+)*5;
+
+ctx.fillStyle=
+"#f5d08a";
+
+ctx.fillRect(
+0,
+groundY+wave,
+canvas.width,
+canvas.height
+);
+
+ctx.fillStyle=
+"rgba(255,255,255,.15)";
+
+for(let i=0;i<20;i++){
+
+ctx.beginPath();
+
+ctx.arc(
+(i*200+
+Date.now()*0.05)
+%(
+canvas.width+200
+),
+100+
+Math.sin(i)*50,
+20,
+0,
+Math.PI*2
+);
+
+ctx.fill();
+}
+
+ctx.fillStyle="white";
+
+ctx.font=
+"bold 28px sans-serif";
+
+ctx.fillText(
+Math.floor(distance)+"m",
+20,
+40
+);
+
+ctx.fillText(
+"❤️ "+(2-hitCount),
+20,
+80
+);
+
+ctx.fillText(
+"BEST "+bestScore+"m",
+20,
+120
+);
+}
