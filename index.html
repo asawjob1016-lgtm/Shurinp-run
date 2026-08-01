@@ -2,46 +2,58 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>🦐 Shrimp Run</title>
 
 <style>
 
-html,body{
+*{
 margin:0;
 padding:0;
+box-sizing:border-box;
+}
+
+html,body{
+width:100%;
+height:100%;
 overflow:hidden;
-touch-action:none;
 font-family:sans-serif;
-background:#0069c9;
+background:#003b66;
+touch-action:none;
 }
 
 canvas{
-display:none;
-background:
-linear-gradient(
-180deg,
-#56c8ff 0%,
-#0094d4 100%
-);
+display:block;
+width:100vw;
+height:100vh;
 }
 
 #menu{
 position:absolute;
-inset:0;
+top:0;
+left:0;
+width:100%;
+height:100%;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
+background:
+linear-gradient(
+180deg,
+#4ec9ff 0%,
+#006bb3 100%
+);
 color:white;
-z-index:20;
+z-index:10;
 }
 
 #title{
 font-size:56px;
 font-weight:bold;
 margin-bottom:15px;
+text-shadow:0 0 10px rgba(0,0,0,.3);
 }
 
 #subtitle{
@@ -49,24 +61,30 @@ font-size:18px;
 margin-bottom:30px;
 }
 
-button{
+#startBtn{
+padding:16px 40px;
 font-size:24px;
-padding:15px 40px;
 border:none;
-border-radius:20px;
+border-radius:18px;
 background:white;
+color:#006bb3;
+font-weight:bold;
 }
 
 #gameover{
 display:none;
 position:absolute;
-inset:0;
-background:rgba(0,0,0,.7);
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.75);
 color:white;
+z-index:20;
+
 justify-content:center;
 align-items:center;
 flex-direction:column;
-z-index:30;
 }
 
 #scoreText{
@@ -75,20 +93,28 @@ margin:20px;
 text-align:center;
 }
 
+#retryBtn{
+padding:16px 40px;
+font-size:24px;
+border:none;
+border-radius:18px;
+}
+
 </style>
 </head>
-
 <body>
 
 <div id="menu">
 
-<div id="title">🦐 Shrimp Run</div>
-
-<div id="subtitle">
-エビを操作して泳ぎ続けよう
+<div id="title">
+🦐 Shrimp Run
 </div>
 
-<button onclick="startGame()">
+<div id="subtitle">
+どこまで泳げる？
+</div>
+
+<button id="startBtn">
 START
 </button>
 
@@ -100,8 +126,8 @@ START
 
 <div id="scoreText"></div>
 
-<button onclick="restartGame()">
-もう一度
+<button id="retryBtn">
+RETRY
 </button>
 
 </div>
@@ -109,3 +135,35 @@ START
 <canvas id="game"></canvas>
 
 <script>
+
+const canvas =
+document.getElementById("game");
+
+const ctx =
+canvas.getContext("2d");
+
+function resize(){
+
+canvas.width =
+window.innerWidth;
+
+canvas.height =
+window.innerHeight;
+
+}
+
+window.addEventListener(
+"resize",
+resize
+);
+
+resize();
+
+console.log(
+"PART1 OK"
+);
+
+</script>
+
+</body>
+</html>
