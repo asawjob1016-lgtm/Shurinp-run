@@ -1115,6 +1115,17 @@ lastTap=now;
 }
 );
 
+canvas.addEventListener(
+  "mousedown",
+  ()=>{
+
+    if(!gameStarted)
+      return;
+
+    shrimp.targetY-=100;
+  }
+);
+
 function loop(){
 
 if(!gameStarted){
