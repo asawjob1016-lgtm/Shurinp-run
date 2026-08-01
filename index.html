@@ -188,6 +188,13 @@ let gameStarted=false;
 
 let distance=0;
 
+let bestScore=
+Number(
+  localStorage.getItem(
+    "shrimpBest"
+  )
+) || 0;
+
 let bubbles=[];
 
 let waves=0;
