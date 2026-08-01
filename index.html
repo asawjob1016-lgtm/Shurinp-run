@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>🦐 Shrimp Run</title>
+
+<style>
+
+html,body{
+margin:0;
+padding:0;
+overflow:hidden;
+font-family:sans-serif;
+background:#006cb8;
+touch-action:none;
+}
+
+canvas{
+display:block;
+background:
+linear-gradient(
+180deg,
+#69c6ff 0%,
+#0088dd 100%
+);
+}
+
+#menu{
+position:absolute;
+inset:0;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+color:white;
+z-index:10;
+}
+
+#title{
+font-size:54px;
+font-weight:bold;
+margin-bottom:10px;
+}
+
+#subtitle{
+font-size:18px;
+margin-bottom:30px;
+}
+
+button{
+font-size:24px;
+padding:15px 40px;
+border:none;
+border-radius:20px;
+background:white;
+}
+
+#gameover{
+display:none;
+position:absolute;
+inset:0;
+background:rgba(0,0,0,.8);
+color:white;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:20;
+}
+
+#scoreText{
+font-size:22px;
+margin:20px;
+text-align:center;
+}
+
+.best{
+color:gold;
+font-weight:bold;
+font-size:28px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="menu">
+
+<div id="title">
+🦐 Shrimp Run
+</div>
+
+<div id="subtitle">
+エビを操作して泳ぎ続けよう
+</div>
+
+<button onclick="startGame()">
+START
+</button>
+
+</div>
+
+<div id="gameover">
+
+<h1>GAME OVER</h1>
+
+<div id="scoreText"></div>
+
+<button onclick="restartGame()">
+もう一度
+</button>
+
+</div>
+
+<canvas id="game"></canvas>
+
+<script>
