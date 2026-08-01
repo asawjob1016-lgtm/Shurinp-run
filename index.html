@@ -275,11 +275,26 @@ function gameOver(){
 
   gameStarted=false;
 
+  const score=
+  Math.floor(distance);
+
+  if(score>bestScore){
+
+    bestScore=score;
+
+    localStorage.setItem(
+      "shrimpBest",
+      bestScore
+    );
+  }
+
   document.getElementById(
     "scoreText"
-  ).textContent =
-    "距離 : " +
-    Math.floor(distance) +
+  ).innerHTML=
+    "距離 : "+
+    score+
+    "m<br><br>BEST : "+
+    bestScore+
     "m";
 
   document.getElementById(
