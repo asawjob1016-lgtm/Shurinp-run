@@ -644,15 +644,58 @@ ctx.createLinearGradient(
 canvas.height
 );
 
-grad.addColorStop(
-0,
-"#69d2ff"
-);
+if(distance<300){
 
-grad.addColorStop(
-1,
-"#0069b8"
-);
+  grad.addColorStop(
+    0,
+    "#69d2ff"
+  );
+
+  grad.addColorStop(
+    1,
+    "#0069b8"
+  );
+
+}
+else if(distance<700){
+
+  grad.addColorStop(
+    0,
+    "#2b8bd6"
+  );
+
+  grad.addColorStop(
+    1,
+    "#003f7a"
+  );
+
+}
+else if(distance<1200){
+
+  grad.addColorStop(
+    0,
+    "#173d66"
+  );
+
+  grad.addColorStop(
+    1,
+    "#001f40"
+  );
+
+}
+else{
+
+  grad.addColorStop(
+    0,
+    "#050b18"
+  );
+
+  grad.addColorStop(
+    1,
+    "#000000"
+  );
+
+}
 
 ctx.fillStyle=grad;
 
