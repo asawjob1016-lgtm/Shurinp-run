@@ -812,6 +812,14 @@ shrimp.targetY-
 shrimp.y
 )*0.15;
 
+if(shrimp.flash>0){
+shrimp.flash--;
+}
+
+if(shrimp.invincible>0){
+shrimp.invincible--;
+}
+
 if(
 shrimp.invincible>0
 ){
@@ -904,6 +912,8 @@ drawBackground();
 updateShrimp();
 
 updateObstacles();
+
+checkCollision();
 
 drawObstacles();
 
