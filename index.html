@@ -758,6 +758,22 @@ o.y
 
 }
 
+function drawItems(){
+
+  for(const item of items){
+
+    ctx.font="60px serif";
+
+    ctx.fillText(
+      item.type,
+      item.x,
+      item.y
+    );
+
+  }
+
+}
+
 function checkCollision(){
 
 for(const o of obstacles){
