@@ -352,29 +352,45 @@ playSound(
 1.0
 );
 
-  gameStarted=false;
+gameStarted=false;
 
   const score=
   Math.floor(distance);
+
+  let isNewRecord=false;
 
   if(score>bestScore){
 
     bestScore=score;
 
+    isNewRecord=true;
+
     localStorage.setItem(
       "shrimpBest",
       bestScore
     );
+
+    document.getElementById(
+      "bestText"
+    ).textContent=
+      "BEST : "+
+      bestScore+
+      "m";
   }
 
   document.getElementById(
     "scoreText"
   ).innerHTML=
-    "距離 : "+
-    score+
-    "m<br><br>BEST : "+
-    bestScore+
-    "m";
+
+  (isNewRecord
+   ? "🎉 NEW RECORD! 🎉<br><br>"
+   : "") +
+
+  "距離 : "+
+  score+
+  "m<br><br>BEST : "+
+  bestScore+
+  "m";
 
   document.getElementById(
     "gameover"
