@@ -563,6 +563,13 @@ document
 });
 
 function gameOver(){
+  
+  riceBalls += gameRice;
+
+localStorage.setItem(
+  "shrimpRice",
+  riceBalls
+);
 
 playSound(300,0.15);
 
