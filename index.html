@@ -370,6 +370,45 @@ document
 
 });
 
+document
+.getElementById(
+  "continueBtn"
+)
+.addEventListener(
+"click",
+()=>{
+
+  if(riceBalls<100){
+
+    alert(
+      "🍙が足りません！"
+    );
+
+    return;
+  }
+
+  riceBalls-=100;
+
+  hits=1;
+
+  shrimp.y=
+  canvas.height/2;
+
+  shrimp.targetY=
+  shrimp.y;
+
+  document.getElementById(
+    "gameover"
+  ).style.display="none";
+
+  gameStarted=true;
+
+  requestAnimationFrame(
+    loop
+  );
+
+});
+
 function gameOver(){
 
 playSound(300,0.15);
