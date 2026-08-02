@@ -878,11 +878,14 @@ shrimp.flash=60;
 
 shrimp.invincible=90;
 
-if(hits>=2){
+if(
+hits>=
+(2+extraLives)
+){
 
-gameOver();
+  gameOver();
 
-return;
+  return;
 
 }
 
