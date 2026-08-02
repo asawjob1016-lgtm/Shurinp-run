@@ -354,6 +354,33 @@ startGame
 );
 
 document
+.getElementById(
+  "lifeBtn"
+)
+.addEventListener(
+"click",
+()=>{
+
+  if(riceBalls<500){
+
+    alert(
+      "🍙500必要です"
+    );
+
+    return;
+  }
+
+  riceBalls-=500;
+
+  extraLives++;
+
+  alert(
+    "❤️が増えました！"
+  );
+
+});
+
+document
 .getElementById("retryBtn")
 .addEventListener("click",()=>{
 
