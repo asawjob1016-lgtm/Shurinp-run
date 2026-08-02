@@ -1292,9 +1292,15 @@ Math.floor(distance)+"m",
 40
 );
 
+const maxLives=
+2+extraLives;
+
 ctx.fillText(
 "❤️".repeat(
-Math.max(0,2-hits)
+Math.max(
+0,
+maxLives-hits
+)
 ),
 20,
 80
