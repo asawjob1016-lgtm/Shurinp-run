@@ -817,6 +817,42 @@ return;
 
 }
 
+function checkItems(){
+
+  for(
+    let i=items.length-1;
+    i>=0;
+    i--
+  ){
+
+    const item=
+    items[i];
+
+    const dx=Math.abs(
+      shrimp.x-item.x
+    );
+
+    const dy=Math.abs(
+      shrimp.y-item.y
+    );
+
+    if(dx<50 && dy<50){
+
+      riceBalls+=5;
+
+      playSound(
+        900,
+        0.1
+      );
+
+      items.splice(i,1);
+
+    }
+
+  }
+
+}
+
 function drawBackground(){
 
 const grad=
