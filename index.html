@@ -974,6 +974,11 @@ function checkItems(){
     if(dx<50 && dy<50){
 
       riceBalls+=5;
+      
+      localStorage.setItem(
+  "shrimpRice",
+  riceBalls
+);
 
       playSound(
         900,
