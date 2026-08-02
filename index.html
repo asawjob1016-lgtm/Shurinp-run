@@ -418,6 +418,22 @@ invincible:0
 
 };
 
+function updateStatusBox(){
+
+  document.getElementById(
+    "riceText"
+  ).textContent =
+  "RICE 🍙" + riceBalls;
+
+  document.getElementById(
+    "lifeText"
+  ).textContent =
+  "LIFE " +
+  "❤️".repeat(
+    2 + extraLives
+  );
+}
+
 function startGame(){
   
   if(audioCtx.state==="suspended"){
