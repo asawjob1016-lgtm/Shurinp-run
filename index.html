@@ -328,7 +328,12 @@ Number(
   )
 ) || 0;
 
-let extraLives=0;
+let extraLives=
+Number(
+  localStorage.getItem(
+    "shrimpLives"
+  )
+) || 0;
 
 document.getElementById(
   "bestText"
