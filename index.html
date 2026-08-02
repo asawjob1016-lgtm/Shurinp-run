@@ -432,6 +432,16 @@ document
   riceBalls-=500;
 
   extraLives++;
+  
+  localStorage.setItem(
+  "shrimpLives",
+  extraLives
+);
+
+localStorage.setItem(
+  "shrimpRice",
+  riceBalls
+);
 
   alert(
     "❤️が増えました！"
