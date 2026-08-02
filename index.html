@@ -713,6 +713,35 @@ obstacles.splice(i,1);
 
 }
 
+function updateItems(){
+
+  itemTimer++;
+
+  if(itemTimer>180){
+
+    spawnItem();
+
+    itemTimer=0;
+  }
+
+  for(
+    let i=items.length-1;
+    i>=0;
+    i--
+  ){
+
+    items[i].x-=8;
+
+    if(items[i].x<-100){
+
+      items.splice(i,1);
+
+    }
+
+  }
+
+}
+
 function drawObstacles(){
 
 for(const o of obstacles){
